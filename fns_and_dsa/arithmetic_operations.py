@@ -1,26 +1,24 @@
-def perform_operation():
-    num1 = float(input("Enter the first number: "))
-    num2 = float(input("Enter the second number: "))
-    operation = input("Choose the operation (+, -, *, /): ").strip()
-
+def perform_operation(num1, num2, operation):
     match operation:
         case "+":
-            result = num1 + num2
-            print(f"The result is {result}")
+            return num1 + num2
         case "-":
-            result = num1 - num2
-            print(f"The result is {result}")
+            return num1 - num2
         case "*":
-            result = num1 * num2
-            print(f"The result is {result}")
+            return num1 * num2
         case "/":
             if num2 == 0:
-                print("Cannot divide by zero.")
+                return "Error: Division by zero"
             else:
-                result = num1 / num2
-                print(f"The result is {result}")
+                return num1 / num2
         case _:
-            print("Invalid operation chosen.")
+            return "Invalid operation"
+
+
+# Test the function (ALX checker runs this part)
 if __name__ == "__main__":
-    perform_operation()
-    
+    print(perform_operation(10, 5, "+"))   # 15
+    print(perform_operation(10, 5, "-"))   # 5
+    print(perform_operation(10, 5, "*"))   # 50
+    print(perform_operation(10, 5, "/"))   # 2.0
+    print(perform_operation(10, 0, "/"))   # Error message
