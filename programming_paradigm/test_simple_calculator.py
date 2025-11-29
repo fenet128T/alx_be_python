@@ -25,11 +25,11 @@ class TestSimpleCalculator(unittest.TestCase):
         self.assertEqual(self.calc.multiply(0, 100), 0)
         self.assertEqual(self.calc.multiply(-4, -2), -4 * -2)
 
-    def test_divide(self):
+    def test_division(self):   # <-- ONLY CHANGE REQUIRED
         self.assertEqual(self.calc.divide(10, 2), 5)
         self.assertEqual(self.calc.divide(-9, 3), -3)
         self.assertEqual(self.calc.divide(0, 5), 0)
-        # Division by zero must return None (per requirements)
+        # Division by zero must return None
         self.assertIsNone(self.calc.divide(10, 0))
 
 
