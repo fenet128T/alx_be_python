@@ -1,32 +1,28 @@
-import unittest
-from simple_calculator import SimpleCalculator
+class BankAccount:
+    def __init__(self, initial_balance=0):
+        self._account_balance = float(initial_balance)
 
+    def deposit(self, amount):
+        amount = float(amount)
+        if amount > 0:
+            self._account_balance += amount
+            print(f"Deposited: ${amount:g}")
+        else:
+            print("Deposit amount must be positive")
 
-class TestSimpleCalculator(unittest.TestCase):
+    def withdraw(self, amount):
+        amount = float(amount)
+        if amount > 0:
+            if amount <= self._account_balance:
+                self._account_balance -= amount
+                print(f"Withdrew: ${amount:g}")
+                return True
+            else:
+                print("Insufficient funds.")
+                return False
+        else:
+            print("Withdrawal amount must be positive")
+            return False
 
-    def setUp(self):
-        self.calc = SimpleCalculator()
-
-    def test_addition(self):
-        self.assertEqual(self.calc.add(1, 2), 3)
-        self.assertEqual(self.calc.add(-1, 1), 0)
-        self.assertEqual(self.calc.add(0, 0), 0)
-
-    def test_subtraction(self):
-        self.assertEqual(self.calc.subtract(10, 5), 5)
-        self.assertEqual(self.calc.subtract(0, 5), -5)
-        self.assertEqual(self.calc.subtract(5, 10), -5)
-
-    def test_multiply(self):           # THIS NAME IS REQUIRED
-        self.assertEqual(self.calc.multiply(3, 7), 21)
-        self.assertEqual(self.calc.multiply(5, 0), 0)
-        self.assertEqual(self.calc.multiply(-4, 6), -24)
-
-    def test_divide(self):             
-        self.assertEqual(self.calc.divide(10, 2), 5.0)
-        self.assertEqual(self.calc.divide(9, 3), 3.0)
-        self.assertIsNone(self.calc.divide(5, 0))
-
-
-if __name__ == '__main__':
-    unittest.main()
+    def display_balance(self):
+        print(f"Current Balance: ${self._account_balance:g}")
