@@ -1,24 +1,32 @@
-class bankAccount:
-    def __init__(self, initial_balance: float = 0.0):
-        self._account_balance = float(initial_balance)
+# bank_account.py
 
+class BankAccount:
+    """
+    A simple BankAccount class with deposit, withdraw and display_balance methods.
+    """
 
-    def deposit(self, amount: float) -> None:
+    def __init__(self, initial_balance=0):
+        self._balance = initial_balance
+
+    def deposit(self, amount):
         if amount > 0:
-            self._account_balance += amount
+            self._balance += amount
+            print(f"Deposited ${amount:.2f}")
         else:
-            raise ValueError("Deposit amount must be positive.")
+            print("Deposit amount must be positive")
 
-    def withdraw(self, amount: float) -> bool:
-        if amount <= 0:
-            raise ValueError("Withdrawal amount must be positive.")
-
-        if amount <= self._account_balance:
-            self._account_balance -= amount
-            return True
+    def withdraw(self, amount):
+        if amount > 0:
+            if self._balance >= amount:
+                self._balance -= amount
+                print(f"Withdrew ${amount:.2f}")
+                return True
+            else:
+                print("Insufficient funds")
+                return False
         else:
+            print("Withdrawal amount must be positive")
             return False
-    def display_balance(self) -> None:
-         
-         print(f"Current Balance: ${self._account_balance:.2f}")
-    
+
+    def display_balance(self):
+        print(f"Current Balance: ${self._balance:.2f}")
